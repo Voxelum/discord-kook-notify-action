@@ -1,0 +1,13 @@
+{
+  "name": "notify",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --platform=node --format=cjs --outfile=index.js"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.6.0",
+    "esbuild": "^0.15.12",
+    "undici": "^5.11.0"
+  }
+}

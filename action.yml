@@ -1,0 +1,13 @@
+name: Notify
+description: Notify discord and kook app about new release
+inputs:
+  version:
+    description: The new version
+  token:
+    description: Kook Token
+  discord:
+    description: Discord webhook
+runs:
+  using: 'node16'
+  main: index.js
+  
