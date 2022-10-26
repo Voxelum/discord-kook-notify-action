@@ -15675,6 +15675,7 @@ var require_undici = __commonJS({
 var core = require_core();
 var { request } = require_undici();
 var version = core.getInput("version");
+version = version.startsWith("v") ? version.substring(1) : version;
 async function generateKook() {
   const changelogs = await (await request(
     `https://raw.githubusercontent.com/voxelum/xmcl-page/master/src/pages/zh/changelogs/${version}.md`

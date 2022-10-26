@@ -1,7 +1,8 @@
 const core = require("@actions/core");
 const { request } = require("undici");
 
-const version = core.getInput("version");
+let version = core.getInput("version");
+version = version.startsWith('v') ? version.substring(1) : version
 
 async function generateKook() {
   const changelogs = await (
