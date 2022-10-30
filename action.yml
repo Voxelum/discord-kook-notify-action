@@ -7,7 +7,31 @@ inputs:
     description: Kook Token
   discord:
     description: Discord webhook
+  qq:
+    description: Bot QQ
+  pwd:
+    description: Bot QQ pwd
 runs:
-  using: 'node16'
-  main: index.js
-  
+  using: "composite"
+  steps:
+  - uses: actions/setup-node@v2
+    with:
+      node-version: 16
+      registry-url: 'https://registry.npmjs.org'
+  - uses: actions/setup-java@3
+    with:
+      java-version: '11'
+      distribution: 'adopt'
+      cache: maven
+  - uses: ./.github/actions/common
+    id: generate
+    with:
+      version: ${{ inputs.version }}
+      token: ${{ inputs.token }}
+      discord: ${{ inputs.discord }}
+  - name: Run with Maven
+    run: mvn --update-snapshots exec:java -Dexec.mainClass="PostAnno"
+    env:
+      CONTENT: ${{ steps.generate.outputs.content }}
+      QQ: ${{ inputs.qq }}
+      QQPWD: ${{ inputs.pwd }}

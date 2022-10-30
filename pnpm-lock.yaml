@@ -1,14 +1,16 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@actions/core': ^1.6.0
-  esbuild: ^0.15.12
-  undici: ^5.11.0
+importers:
 
-devDependencies:
-  '@actions/core': 1.10.0
-  esbuild: 0.15.12
-  undici: 5.11.0
+  .github/actions/common:
+    specifiers:
+      '@actions/core': ^1.6.0
+      esbuild: ^0.15.12
+      undici: ^5.11.0
+    devDependencies:
+      '@actions/core': 1.10.0
+      esbuild: 0.15.12
+      undici: 5.11.0
 
 packages:
 

@@ -170,13 +170,7 @@ async function generateZH() {
 
     lines.push("可以去 https://xmcl.app/zh/changelogs 查看完整更新日志");
 
-    await request(
-      `https://xmcl-notification-bot.azurewebsites.net/api/HttpTriggerJava1`,
-      {
-        method: "POST",
-        body: lines.join("\n"),
-      }
-    );
+    core.setOutput('content', lines.join('\n'))
   };
 
   sendKook();
