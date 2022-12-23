@@ -213,23 +213,40 @@ async function generateEN() {
     }
   }
 
-  const fields = [];
+  const filter1024 = (lines) => {
+    let remaining = 1024
+    const result = []
+    console.log(lines)
+    while (remaining > 0) {
+      const cur = lines.shift()
+      if (!cur) break
+      if ((remaining - cur.length - 1) > 0) {
+        result.push(cur)
+        remaining -= (cur.length + 1)
+      } else {
+        break
+      }
+    }
+    return result
+  }
+
+  const fields = []
   if (features.length > 0) {
     fields.push({
       name: "**🚀 Features**",
-      value: features.join("\n"),
+      value: filter1024(features.slice(0, 25).filter(v => !!v)).join("\n"),
     });
   }
   if (fixes.length > 0) {
     fields.push({
       name: "**🐛 Bug Fixes & Patches**",
-      value: fixes.join("\n"),
+      value: filter1024(fixes.slice(0, 25).filter(v => !!v)).join("\n"),
     });
   }
   if (refactors.length > 0) {
     fields.push({
       name: "**🏗️ Refactors**",
-      value: refactors.join("\n"),
+      value: filter1024(refactors.slice(0, 25).filter(v => !!v)).join("\n"),
     });
   }
 
